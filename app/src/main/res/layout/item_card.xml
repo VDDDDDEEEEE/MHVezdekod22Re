@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="count"
+            type="Integer" />
+
+        <variable
+            name="product"
+            type="com.vde.mhvezdekod22re.models.Products" />
+
+        <variable
+            name="isSpicy"
+            type="Boolean" />
+
+        <variable
+            name="isVegan"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginVertical="5dp"
+        app:cardBackgroundColor="@color/gray_bg"
+        app:cardCornerRadius="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <ImageView
+                android:id="@+id/bigIv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/screenshot_tom_yam"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="6dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="2dp"
+                    android:visibility="@{product.price_old != null ? View.VISIBLE: View.GONE}"
+                    android:src="@drawable/ic_type_sale"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="2dp"
+                    android:visibility="@{isSpicy? View.VISIBLE: View.GONE}"
+                    android:src="@drawable/ic_type_spicy"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="2dp"
+                    android:visibility="@{isVegan? View.VISIBLE: View.GONE}"
+                    android:src="@drawable/ic_type_vegan"/>
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/nameTv"
+                style="@style/body_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingTop="12dp"
+                android:text="@{product.name}"
+                android:textColor="@color/black87"
+                app:layout_constraintTop_toBottomOf="@id/bigIv" />
+
+            <TextView
+                android:id="@+id/weightTv"
+                style="@style/body_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="12dp"
+                android:paddingTop="4dp"
+                android:text="500"
+                android:textColor="@color/black60"
+                app:layout_constraintTop_toBottomOf="@id/nameTv" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/shape_white_btn"
+                android:visibility="@{count>0? View.INVISIBLE : View.VISIBLE}"
+                app:layout_constraintTop_toBottomOf="@id/weightTv" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:elevation="2dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="@{count>0? View.INVISIBLE : View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@id/btn"
+                app:layout_constraintEnd_toEndOf="@id/btn"
+                app:layout_constraintStart_toStartOf="@id/btn"
+                app:layout_constraintTop_toTopOf="@id/btn">
+
+                <TextView
+                    android:id="@+id/priceTv"
+                    style="@style/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="4dp"
+                    android:gravity="center"
+                    android:text="720 ₽"
+                    android:textColor="@color/black87" />
+
+                <TextView
+                    android:id="@+id/strikeTV"
+                    style="@style/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="4dp"
+                    android:gravity="center"
+                    android:text="800 ₽"
+                    android:textColor="@color/black60"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/minusBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/shape_white_btn_minus"
+                android:visibility="@{count>0? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@id/btn"
+                app:layout_constraintStart_toStartOf="@id/btn"
+                app:layout_constraintTop_toTopOf="@id/btn" />
+
+            <TextView
+                style="@style/button"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="8dp"
+                android:gravity="center"
+                android:text="@{count.toString()}"
+                android:textColor="@color/black87"
+                android:visibility="@{count>0? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@id/btn"
+                app:layout_constraintEnd_toStartOf="@id/plusBtn"
+                app:layout_constraintStart_toEndOf="@id/minusBtn"
+                app:layout_constraintTop_toTopOf="@id/btn" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/plusBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/shape_white_btn_plus"
+                android:visibility="@{count>0? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@id/btn"
+                app:layout_constraintEnd_toEndOf="@id/btn"
+                app:layout_constraintTop_toTopOf="@id/btn" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                app:layout_constraintTop_toBottomOf="@id/btn" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

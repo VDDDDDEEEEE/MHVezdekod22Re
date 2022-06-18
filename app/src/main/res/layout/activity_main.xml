@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="price"
+            type="String" />
+
+        <variable
+            name="filterCount"
+            type="Integer" />
+
+        <variable
+            name="listIsEmpty"
+            type="Boolean" />
+
+        <variable
+            name="isOpenSearch"
+            type="Boolean" />
+
+        <variable
+            name="editTextIsEmpty"
+            type="Boolean" />
+
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.MainActivity">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/filterIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_filter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:fontFamily="sans-serif-medium"
+                android:textSize="11sp"
+                android:textColor="@color/white"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:text="@{filterCount.toString()}"
+                android:visibility="@{filterCount >0 ? View.VISIBLE : View.GONE}"
+                android:gravity="center"
+                android:layout_marginStart="30dp"
+                android:layout_marginBottom="27dp"
+                android:background="@drawable/shaper_primary_oval"
+                app:layout_constraintStart_toStartOf="@id/filterIv"
+                app:layout_constraintBottom_toBottomOf="@id/filterIv"/>
+
+            <ImageView
+                android:id="@+id/topLogoIv"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/searchIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_search"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:visibility="@{isOpenSearch? View.VISIBLE : View.GONE}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+                <ImageView
+                    android:id="@+id/closeSearchIv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrowleft"
+                    android:padding="16dp"
+                    android:layout_gravity="center_vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/primary" />
+
+                <EditText
+                    android:id="@+id/searchEditText"
+                    android:backgroundTint="@color/transparent"
+                    android:textCursorDrawable="@drawable/shape_cursor_indicator"
+                    style="@style/body_1"
+                    android:textColor="@color/black60"
+                    android:paddingEnd="16dp"
+                    android:hint="Найти блюдо"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:textIsSelectable="false"
+                    app:layout_constraintStart_toEndOf="@id/closeSearchIv"
+                    app:layout_constraintEnd_toStartOf="@id/clearTextIv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+                <ImageView
+                    android:id="@+id/clearTextIv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cancel"
+                    android:visibility="@{editTextIsEmpty? View.INVISIBLE: View.VISIBLE}"
+                    android:padding="16dp"
+                    android:layout_gravity="center_vertical"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                   />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingHorizontal="16dp"
+            android:clipToPadding="false"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/topBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tabIndicatorAnimationMode="linear"
+            app:tabIndicator="@drawable/indicator_primary"
+            app:tabIndicatorColor="@color/primary"
+            app:tabIndicatorHeight="40dp"
+            app:tabMode="auto"
+            app:tabTextAppearance="@style/MineCustomTabText"
+            app:tabTextColor="@color/black87"
+            app:tabSelectedTextColor="@color/white"
+            app:tabRippleColor="@null"/>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="12dp"
+            android:paddingBottom="11dp"
+            android:layout_marginTop="11dp"
+            android:clipToPadding="false"
+            android:nestedScrollingEnabled="true"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/goToCartLl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout"
+            app:layout_constraintVertical_bias="0.0"
+            app:spanCount="2"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_card" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/goToCartLl"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:visibility="@{price.isEmpty? View.GONE : View.VISIBLE}"
+            android:background="@color/white"
+
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/addToCartBtn"
+                style="@style/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="12dp"
+                android:background="@drawable/indicator_primary"
+                android:gravity="center"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+
+                style="@style/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="10dp"
+                android:text="@{price}"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:drawablePadding="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:drawableStartCompat="@drawable/ic_cart"
+                app:drawableTint="@color/white" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            style="@style/body_1"
+            android:textColor="@color/black60"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="@{listIsEmpty? View.VISIBLE: View.GONE}"
+            android:text="@{filterCount >0 ? @string/no_result_filtered : @string/no_result}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

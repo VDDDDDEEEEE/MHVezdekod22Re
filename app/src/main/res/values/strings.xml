@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">VezdekodMH22</string>
+    <string name="weight">Вес</string>
+    <string name="energy">Энерг. ценность</string>
+    <string name="protein">Белки</string>
+    <string name="fats">Жиры</string>
+    <string name="carbohydrates">Углеводы</string>
+    <string name="energy_unit">ккал</string>
+    <string name="toCard">В корзину за</string>
+    <string name="no_result_filtered">Таких блюд нет :(\nПопробуйте изменить фильтры</string>
+    <string name="no_result">Ничего не нашлось :(</string>
+</resources>

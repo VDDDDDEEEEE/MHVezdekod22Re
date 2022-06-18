@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/headerTv"
+        style="@style/headline_6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Подобрать блюда"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tagsRv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/headerTv"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/addToBtn"
+        style="@style/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Готово"
+        android:background="@drawable/indicator_primary"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tagsRv"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        app:layout_constraintTop_toBottomOf="@id/addToBtn"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

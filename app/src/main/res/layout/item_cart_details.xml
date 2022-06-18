@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="count"
+            type="Integer" />
+
+        <variable
+            name="product"
+            type="com.vde.mhvezdekod22re.models.Products" />
+
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:paddingHorizontal="16dp"
+        android:layout_height="130dp">
+
+        <ImageView
+            android:id="@+id/cartItemIv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:layout_marginVertical="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/tom_yam"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/body_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="12dp"
+            android:text="@{product.name}"
+            android:textColor="@color/black87"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cartItemIv"
+            app:layout_constraintTop_toTopOf="@id/cartItemIv" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/minusBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/shape_gray_btn_minus"
+            android:visibility="@{count>0? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/cartItemIv"
+            app:layout_constraintStart_toEndOf="@id/cartItemIv" />
+
+        <TextView
+            android:id="@+id/countCartTv"
+            style="@style/button"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{count.toString()}"
+            android:textColor="@color/black87"
+            android:visibility="@{count>0? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/minusBtn"
+            app:layout_constraintStart_toEndOf="@id/minusBtn"
+            app:layout_constraintTop_toTopOf="@id/minusBtn" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/plusBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/shape_gray_btn_plus"
+            android:visibility="@{count>0? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/cartItemIv"
+            app:layout_constraintStart_toEndOf="@id/countCartTv" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="end"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/plusBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/plusBtn"
+            app:layout_constraintTop_toTopOf="@id/plusBtn">
+
+            <TextView
+                android:id="@+id/priceTv"
+                style="@style/button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingVertical="1dp"
+                android:text="720 ₽"
+                android:textColor="@color/black87" />
+
+            <TextView
+                android:id="@+id/strikeTV"
+                style="@style/button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingVertical="1dp"
+                android:text="800 ₽"
+                android:textColor="@color/black60"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
